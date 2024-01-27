@@ -1,32 +1,34 @@
-{% extends "Core/base.html" %}
+{% extends 'Core/base.html' %}
 {% load static %}
-{% block title %} каталог {% endblock %}
+{% block title %}
+  каталог
+{% endblock %}
 {% block content %}
-<div class="d-flex flex-row justify-content-center"	>
-	{% for product in all_products %}
-	<div class="card" style="width: 18rem;">
-		{{ product.image.url }}
-		<img src="{{ product.image.url }}" class="card-img-top" alt="">
-		<div class="card-body">
-		  <p class="card-text"></p>
-		  	<div class="d-flex">
-		  		<span class="card-text fw-bold fs-1">{{ product.price }}</span>
-		  		<span class="card-text text-danger margin-bottom-auto">{{ product.discount }}%</span>
-			</div>
-			<h5 class="card-title">{{ product.name }}</h5>
-			<div class="d-flex">
-				<img src="{% static 'Core/img/star.png'%}" class="" width="14">
-				<img src="{% static 'Core/img/star.png'%}" class="" width="14">
-				<img src="{% static 'Core/img/star.png'%}" class="" width="14">
-				<img src="{% static 'Core/img/star.png'%}" class="" width="14">
-				<img src="{% static 'Core/img/star.png'%}" class="" width="14">
-			</div>
-		  <a href="#" class="btn btn-secondary w-100 my-2"> Подробнее </a>
-		  <span class="card-text text-secondary">{{ product.desc }}</span>
-		  <span class="card-text text-secondary">{{ product.stock }}</span>
-		</div>
-	  </div>
-	  {% endfor %}
-</div>
-			
+  <div class="d-flex flex-row justify-content-center gap-4 mx-3 my-3">
+    {% for product in all_products %}
+      <div class="card" style="width: 18rem;">
+        <img src="{{ product.image.url }}" class="card-img-top" alt />
+        <div class="card-body">
+          <p class="card-text"></p>
+          <div class="d-flex">
+            <span class="card-text fw-bold fs-1">{{ product.price }}</span>
+            <span class="card-text text-danger margin-bottom-auto">{{ product.discount }}%</span>
+          </div>
+          <h5 class="card-title">{{ product.name }}</h5>
+          <div class="d-flex gap-1">
+			{% for i in '12345' %}
+			{% if forloop.counter <= product.rating %}
+				<img src="{% static 'Core/img/star.png' %}" class width="20" />
+			{% else %}
+				<img style="filter: grayscale(1)" src="{% static 'Core/img/star.png' %}" class width="20" />
+			{% endif %}
+			{% endfor %}
+          </div>
+          <a href="#" class="btn btn-secondary w-100 my-2">Подробнее</a>
+          <span class="card-text text-secondary">{{ product.desc }}</span>
+          <span class="card-text text-secondary">{{ product.stock }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
