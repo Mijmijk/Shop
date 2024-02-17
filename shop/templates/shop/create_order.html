@@ -1,5 +1,35 @@
-{% extends "Core/base.html" %}
-{% block title %} сделать заказ {% endblock %}
+{% extends 'Core/base.html' %}
+{% load static %}
+{% block title %} 
+	сделать заказ 
+{% endblock %}
 {% block content %}
-			
+<div class="d-flex flex-row justify-content-center gap-4 mx-3 my-3">
+	<div class="card" style="width: 18rem;">
+	  <img src="{{ product.image.url }}" class="card-img-top" alt />
+	  <div class="card-body">
+		<p class="card-text"></p>
+		<div class="d-flex">
+		  <span class="card-text fw-bold fs-1">{{ product.price }}</span>
+		  <span class="card-text text-danger margin-bottom-auto">{{ product.discount }}%</span>
+		</div>
+		<h5 class="card-title">{{ product.name }}</h5>
+		<div class="d-flex gap-1">
+		  {% for i in '12345' %}
+		  {% if forloop.counter <= product.rating %}
+			  <img src="{% static 'Core/img/star.png' %}" class width="20" />
+		  {% else %}
+			  <img style="filter: grayscale(1)" src="{% static 'Core/img/star.png' %}" class width="20" />
+		  {% endif %}
+		  {% endfor %}
+		</div>
+		<form method="POST" action=""> {% csrf_token %} 
+			<input type="text" name="delivery_address" placeholder="адрес">
+			<button type="submit">Подтвердить</button>
+			</form>
+		<span class="card-text text-secondary">{{ product.desc }}</span>
+		<span class="card-text text-secondary">{{ product.stock }}</span>
+	  </div>
+	</div>
+</div>	
 {% endblock %}

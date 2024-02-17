@@ -1,5 +1,14 @@
 {% extends "Core/base.html" %}
 {% block title %} заказы {% endblock %}
 {% block content %}
-			
+<h1 class="text-center">Orders</h1>
+<div class="d-flex flex-row flex-wrap justify-content-center gap-4 mx-3 my-3">
+    {% for order in all_orders %}
+      <div class="card justify-content-center p-3" style="width: 18rem;">
+		<span class="card-text text-danger fs-6">{{ order.created_at }}</span>
+            <span class="card-text fs-4">{{ order.delivery_address }}</span>
+			<span class="card-text fs-4">{{ order.product.name }}</span>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

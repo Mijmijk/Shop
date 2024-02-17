@@ -5,7 +5,6 @@
 {% endblock %}
 {% block content %}
   <div class="d-flex flex-row justify-content-center gap-4 mx-3 my-3">
-    {% for product in all_products %}
       <div class="card" style="width: 18rem;">
         <img src="{{ product.image.url }}" class="card-img-top" alt />
         <div class="card-body">
@@ -24,10 +23,10 @@
 			{% endif %}
 			{% endfor %}
           </div>
-          <a href="{% url "product_detail" id=product.id %}" class="btn btn-secondary w-100 my-2">Подробнее</a>
+          <a href="{% url "cr_order" id=product.id %}" class="btn btn-secondary w-100 my-2">Оформить заказ</a>
           <span class="card-text text-secondary">{{ product.desc }}</span>
+          <span class="card-text text-secondary">{{ product.stock }}</span>
         </div>
       </div>
-    {% endfor %}
   </div>
 {% endblock %}
